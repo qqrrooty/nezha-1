@@ -1,9 +1,9 @@
 #!/bin/sh
 
-NZ_BASE_PATH="/opt/nezha-1"
-NZ_DASHBOARD_PATH="${NZ_BASE_PATH}/dashboard-1"
-NZ_DASHBOARD_SERVICE="/etc/systemd/system/nezha-dashboard-1.service"
-NZ_DASHBOARD_SERVICERC="/etc/init.d/nezha-dashboard-1"
+NZ_BASE_PATH="/opt/nezha-agent-instance2"
+NZ_DASHBOARD_PATH="${NZ_BASE_PATH}/dashboard"
+NZ_DASHBOARD_SERVICE="/etc/systemd/system/nezha-dashboard.service"
+NZ_DASHBOARD_SERVICERC="/etc/init.d/nezha-dashboard"
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -247,13 +247,13 @@ init() {
 update_script() {
     echo "> 更新脚本"
 
-    curl -sL "https://${GITHUB_RAW_URL}/install.sh" -o /tmp/nezha-1.sh
-    mv -f /tmp/nezha-1.sh ./nezha-1.sh && chmod a+x ./nezha-1.sh
+    curl -sL "https://${GITHUB_RAW_URL}/install.sh" -o /tmp/nezha.sh
+    mv -f /tmp/nezha.sh ./nezha.sh && chmod a+x ./nezha.sh
 
     echo "3s后执行新脚本"
     sleep 3s
     clear
-    exec ./nezha-1.sh
+    exec ./nezha.sh
     exit 0
 }
 
@@ -590,12 +590,12 @@ uninstall_dashboard_standalone() {
 show_usage() {
     echo "哪吒监控 管理脚本使用方法: "
     echo "--------------------------------------------------------"
-    echo "./nezha-1.sh                    - 显示管理菜单"
-    echo "./nezha-1.sh install            - 安装面板端"
-    echo "./nezha-1.sh modify_config      - 修改面板配置"
-    echo "./nezha-1.sh restart_and_update - 重启并更新面板"
-    echo "./nezha-1.sh show_log           - 查看面板日志"
-    echo "./nezha-1.sh uninstall          - 卸载管理面板"
+    echo "./nezha.sh                    - 显示管理菜单"
+    echo "./nezha.sh install            - 安装面板端"
+    echo "./nezha.sh modify_config      - 修改面板配置"
+    echo "./nezha.sh restart_and_update - 重启并更新面板"
+    echo "./nezha.sh show_log           - 查看面板日志"
+    echo "./nezha.sh uninstall          - 卸载管理面板"
     echo "--------------------------------------------------------"
 }
 
@@ -664,7 +664,7 @@ if [ $# -gt 0 ]; then
             update_script 0
             ;;
         "install_agent")
-            install_agent_v0 "$@"
+            install_agent_ "$@"
             ;;
         *) show_usage ;;
     esac
