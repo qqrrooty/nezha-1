@@ -258,7 +258,7 @@ update_script() {
 }
 
 install_agent_v0() {
-    shell_url="https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/v0/install.sh"
+    shell_url="https://raw.githubusercontent.com/qqrrooty/nezha-1/main/v0/install.sh"
     file_name="nezha_v0.sh"
     if command -v wget >/dev/null 2>&1; then
         wget -O "/tmp/install_v0.sh" "$shell_url"
